@@ -74,7 +74,15 @@ namespace TestApp.Droid
             System.Diagnostics.Debug.WriteLine(str);
 
             // now, lets see what happens when native code throws an exception
-            NativeWrapper.ThrowAnException();
+            try
+            {
+                NativeWrapper.ThrowAnException();
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception: " + e);
+                throw;
+            }
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
